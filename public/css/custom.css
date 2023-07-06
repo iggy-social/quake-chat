@@ -4,7 +4,7 @@
 
 :root {
   --bs-primary: #FFFFFF !important;
-  --bs-primary-rgb: 255, 4, 32;
+  --bs-primary-rgb: 255, 255, 255;
   --bs-btn-disabled-border-color: #ffffff;
   --bs-nav-pills-link-active-bg: #ffffff !important;
   --bs-nav-pills-link-active-color: #222529 !important;
