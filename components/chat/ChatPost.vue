@@ -202,8 +202,12 @@ export default {
 
   computed: {
     getOrbisContext() {
-      if (this.$config.orbisTest) {
-        return this.$config.orbisTestContext;
+      if (this.post?.context) {
+        return this.post.context;
+      } else if (this.post?.content?.context) {
+        return this.post.content.context;
+      } else if (this.post?.context_details?.context_id) {
+        return this.post.context_details.context_id;
       } else {
         return this.$config.orbisContext;
       }
