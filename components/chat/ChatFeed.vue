@@ -104,7 +104,8 @@ import SwitchChainButton from "~/components/SwitchChainButton.vue";
 import TenorGifSearch from "~/components/tenor/TenorGifSearch.vue";
 import TenorStickerSearch from "~/components/tenor/TenorStickerSearch.vue";
 import Web3StorageImageUpload from "~/components/storage/Web3StorageImageUpload.vue";
-import EmojiPicker from '~/components/EmojiPicker'
+  
+import EmojiPicker from '~/components/EmojiPicker.vue'
 import 'emoji-mart-vue-fast/css/emoji-mart.css'
 
 export default {
@@ -197,6 +198,15 @@ export default {
   },
 
   methods: {
+        insertEmoji(emoji) {
+    if (!this.postText) {
+      this.postText = emoji + " ";
+    } else {
+      this.postText = this.postText + " " + emoji + " ";
+    }
+  },
+
+    
     async checkConnectionToOrbis() {
       const isConn = await this.$orbis.isConnected();
       this.userStore.setIsConnectedToOrbis(isConn);
@@ -390,14 +400,6 @@ export default {
       // callback hook for ChatPost component
       // listens for delete event and removes post from feed
       this.orbisPosts = this.orbisPosts.filter((post) => post.stream_id !== streamId);
-    }
-  },
-
-    insertEmoji(emoji) {
-    if (!this.postText) {
-      this.postText = emoji + " ";
-    } else {
-      this.postText = this.postText + " " + emoji + " ";
     }
   },
 
