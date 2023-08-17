@@ -33,6 +33,12 @@
               buttonText="IMG"
               cls="btn btn-outline-primary me-2 mt-2"
             />
+
+            <!-- Emoji Picker -->
+            <EmojiPicker  
+              v-if="isActivated && $config.web3storageKey !== '' && userStore.getIsConnectedToOrbis && isSupportedChain && hasDomainOrNotRequired"
+              @updateEmoji="insertEmoji"
+            />
           </div>
           
           <div>
@@ -381,6 +387,14 @@ export default {
       // callback hook for ChatPost component
       // listens for delete event and removes post from feed
       this.orbisPosts = this.orbisPosts.filter((post) => post.stream_id !== streamId);
+    }
+  },
+
+    insertEmoji(emoji) {
+    if (!this.postText) {
+      this.postText = emoji + " ";
+    } else {
+      this.postText = this.postText + " " + emoji + " ";
     }
   },
 
