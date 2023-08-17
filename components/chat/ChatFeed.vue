@@ -104,6 +104,8 @@ import SwitchChainButton from "~/components/SwitchChainButton.vue";
 import TenorGifSearch from "~/components/tenor/TenorGifSearch.vue";
 import TenorStickerSearch from "~/components/tenor/TenorStickerSearch.vue";
 import Web3StorageImageUpload from "~/components/storage/Web3StorageImageUpload.vue";
+import EmojiPicker from '~/components/EmojiPicker'
+import 'emoji-mart-vue-fast/css/emoji-mart.css'
 
 export default {
   name: "ChatFeed",
@@ -121,7 +123,8 @@ export default {
     SwitchChainButton,
     TenorGifSearch,
     TenorStickerSearch,
-    Web3StorageImageUpload
+    Web3StorageImageUpload,
+    EmojiPicker
   },
 
   data() {
