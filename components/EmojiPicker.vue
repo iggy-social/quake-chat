@@ -2,7 +2,7 @@
   <button class="btn btn-outline-primary me-2 mt-2 "
    @click="toggleEmojiPicker">
    <i class="bi bi-emoji-smile"></i>
-   EMO</button>
+   </button>
 
     <div class="modal fade" id="emojiModal" tabindex="-1" aria-labelledby="emojiModalLabel" aria-hidden="true">
       <div class="modal-dialog">
