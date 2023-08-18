@@ -198,11 +198,11 @@ export default {
   },
 
   methods: {
-        insertEmoji(emoji) {
+  insertEmoji(emoji) {
     if (!this.postText) {
-      this.postText = emoji + " ";
+      this.postText = emoji;
     } else {
-      this.postText = this.postText + " " + emoji + " ";
+      this.postText += emoji;
     }
   },
 
