@@ -36,7 +36,7 @@
 
             <!-- Emoji Picker -->
             <EmojiPicker  
-              v-if="isActivated && $config.web3storageKey !== '' && userStore.getIsConnectedToOrbis && isSupportedChain && hasDomainOrNotRequired"
+              v-if="isActivated && userStore.getIsConnectedToOrbis && isSupportedChain && hasDomainOrNotRequired"
               @updateEmoji="insertEmoji"
             />
           </div>
