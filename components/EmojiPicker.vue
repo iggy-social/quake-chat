@@ -18,7 +18,7 @@
 <script>
 import { ref } from 'vue'
 import { Picker, EmojiIndex } from 'emoji-mart-vue-fast/src'
-import data from 'emoji-mart-vue-fast/data/all.json'
+import data from 'emoji-mart-vue-fast/data/apple.json'
 
 export default {
   name: 'EmojiPicker',
