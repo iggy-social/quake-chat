@@ -1,6 +1,5 @@
 <template>
-  <button data-bs-target="#emojiModal" class="btn btn-outline-primary me-2 mt-2"
-   @click="toggleEmojiPicker" >
+  <button data-bs-toggle="modal" data-bs-target="#emojiModal" class="btn btn-outline-primary me-2 mt-2">
     <i class="bi bi-emoji-smile"></i>
   </button>
 
@@ -9,14 +8,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="emojiModalLabel">Pick an Emoji</h1>
-          <button id="closeEmojiModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                  @click="closeEmojiPicker"></button>
+          <button id="closeEmojiModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <EmojiMartPicker
-            v-if="emojiPickerSelected"
             :data="emojiIndex"
             set="apple"
+            title="Pick an emoji"
             @select="handleEmojiSelect"
             class="emoji-mart-category"
             :style="{ backgroundColor: '#222529', color: '#FFFFFF' }"
@@ -28,7 +26,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import { EmojiIndex } from 'emoji-mart-vue-fast/src/utils/emoji-data'
 import EmojiMartPicker from 'emoji-mart-vue-fast/src/components/Picker'
 
@@ -42,40 +39,16 @@ export default {
   emits: ['updateEmoji'],
 
   setup(props, context) {
-    const emojiPickerSelected = ref(false)
     const emojiIndex = new EmojiIndex(data)
-    let modalInstance = null;
-
-    const toggleEmojiPicker = () => {
-      emojiPickerSelected.value = !emojiPickerSelected.value;
-
-      if (emojiPickerSelected.value) {
-        modalInstance = new bootstrap.Modal(document.getElementById('emojiModal'));
-        modalInstance.show();
-      } else if (modalInstance !== null && modalInstance._isShown) {
-        modalInstance.hide();
-      }
-    }
-
-    const closeEmojiPicker = () => {
-      emojiPickerSelected.value = false;
-
-      if (modalInstance !== null && modalInstance._isShown) {
-        modalInstance.hide();
-      }
-    }
 
     const handleEmojiSelect = (emoji) => {
+      document.getElementById('closeEmojiModal').click();
       context.emit('updateEmoji', emoji.native);
-      closeEmojiPicker();
     }
 
     return {
-      emojiPickerSelected,
       emojiIndex,
-      toggleEmojiPicker,
-      handleEmojiSelect,
-      closeEmojiPicker,
+      handleEmojiSelect
     }
   },
 }
