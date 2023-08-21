@@ -70,10 +70,10 @@ npm run preview
 
 Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
 
-## Testing
+## Errors
 
-Orbis test group:
+### Could not resolve cartonne / dag-jose
 
-```bash
-https://app.orbis.club/group/kjzl6cwe1jw145e1i1agcrjp9375sjpyyk7imu281koehrpve0pr46lvr5e9xco
-```
+If you get this error, install `cartonne` package in your local `node_modules`, but keep it out of `package.json` (server does not need this package).
+
+Same goes for the `dag-jose` library.
