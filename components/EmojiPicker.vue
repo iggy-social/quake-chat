@@ -1,6 +1,6 @@
 <template>
   <button data-bs-toggle="modal" data-bs-target="#emojiModal" class="btn btn-outline-primary me-2 mt-2">
-    <i class="bi bi-emoji-smile"></i>
+    <i class="bi bi-emoji-smile-fill"></i>
   </button>
 
   <div class="modal fade" id="emojiModal" tabindex="-1" aria-labelledby="emojiModalLabel" aria-hidden="true">
