@@ -15,6 +15,7 @@
             :data="emojiIndex"
             set="apple"
             title="Pick an emoji"
+            emoji="point_up"
             @select="handleEmojiSelect"
             class="emoji-mart-category"
             :style="{ backgroundColor: '#222529', color: '#FFFFFF' }"
@@ -29,7 +30,7 @@
 import { EmojiIndex } from 'emoji-mart-vue-fast/src/utils/emoji-data'
 import EmojiMartPicker from 'emoji-mart-vue-fast/src/components/Picker'
 
-import data from 'emoji-mart-vue-fast/data/all.json'
+import data from 'emoji-mart-vue-fast/data/apple.json'
 
 export default {
   name: 'EmojiPickerWithModal',
