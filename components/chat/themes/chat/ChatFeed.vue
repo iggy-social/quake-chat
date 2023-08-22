@@ -2,11 +2,12 @@
   <div class="scroll-500">
     <div class="card mb-3 border" v-if="!hideCommentBox">
       <div class="card-body">
+
         <div class="form-group mt-2 mb-2">
           <textarea 
             v-model="postText" 
             :disabled="!userStore.getIsConnectedToOrbis || !isSupportedChain || !hasDomainOrNotRequired" 
-            class="form-control" id="exampleTextarea" rows="5" 
+            class="form-control" id="exampleTextarea" rows="2" 
             :placeholder="createPostPlaceholder"
           ></textarea>
         </div>
@@ -70,32 +71,34 @@
           </div>
         
         </div>
+
+        <div class="mt-3" v-if="orbisPosts">
+          <ChatPost 
+            @insertReply="insertReply" 
+            @removePost="removePost" 
+            v-for="post in orbisPosts" 
+            :key="post.stream_id"
+            :showQuotedPost="showQuotedPost" 
+            :post="post" />
+        </div>
+
+        <div class="d-flex justify-content-center mb-3" v-if="waitingLoadPosts">
+          <span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>
+        </div>
+        
+        <div class="d-grid gap-2 col-6 mx-auto mb-5" v-if="showLoadMore">
+          <button class="btn btn-primary" type="button" @click="getOrbisPosts">Load more posts</button>
+        </div>
       </div>
     </div>
 
-    <div v-if="orbisPosts">
-      <ChatPost 
-        @insertReply="insertReply" 
-        @removePost="removePost" 
-        v-for="post in orbisPosts" 
-        :key="post.stream_id"
-        :showQuotedPost="showQuotedPost" 
-        :post="post" />
-    </div>
-
-    <div class="d-flex justify-content-center mb-3" v-if="waitingLoadPosts">
-      <span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>
-    </div>
     
-    <div class="d-grid gap-2 col-6 mx-auto mb-5" v-if="showLoadMore">
-      <button class="btn btn-primary" type="button" @click="getOrbisPosts">Load more posts</button>
-    </div>
   </div>
 </template>
 
 <script>
 import { useEthers } from 'vue-dapp';
-import ChatPost from "~/components/chat/ChatPost.vue";
+import 'emoji-mart-vue-fast/css/emoji-mart.css'
 import { useToast } from "vue-toastification/dist/index.mjs";
 import { useSiteStore } from '~/store/site';
 import { useUserStore } from '~/store/user';
@@ -104,9 +107,8 @@ import SwitchChainButton from "~/components/SwitchChainButton.vue";
 import TenorGifSearch from "~/components/tenor/TenorGifSearch.vue";
 import TenorStickerSearch from "~/components/tenor/TenorStickerSearch.vue";
 import Web3StorageImageUpload from "~/components/storage/Web3StorageImageUpload.vue";
-  
+import ChatPost from "./ChatPost.vue";
 import EmojiPicker from '~/components/EmojiPicker.vue'
-import 'emoji-mart-vue-fast/css/emoji-mart.css'
 
 export default {
   name: "ChatFeed",

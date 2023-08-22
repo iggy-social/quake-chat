@@ -6,6 +6,7 @@ export const useSiteStore = defineStore({
 
   state: () => {
     return {
+      chatTheme: useLocalStorage('chatTheme', "birdie"),
       colorMode: "dark",
       showOnlyMasterPosts: useLocalStorage('showOnlyMasterPosts', "false"),
       slippage: "0.5", // percentage (%)
@@ -14,6 +15,16 @@ export const useSiteStore = defineStore({
   },
 
   getters: {
+    getChatTheme(state) {
+      const pStorage = useLocalStorage('chatTheme', "birdie");
+
+      if (pStorage.value) {
+        state.chatTheme = pStorage.value;
+      }
+
+      return state.chatTheme;
+    },
+
     getColorMode(state) {
       const pStorage = useLocalStorage('colorMode', null);
 
@@ -56,6 +67,11 @@ export const useSiteStore = defineStore({
   },
 
   actions: {
+    setChatTheme(ct: string) {
+      this.chatTheme = ct;
+      localStorage.setItem("chatTheme", ct);
+    },
+
     setColorMode(cm: string) {
       this.colorMode = cm;
       localStorage.setItem("colorMode", cm);

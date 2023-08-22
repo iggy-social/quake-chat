@@ -1,16 +1,16 @@
 <template>
-  <ChatFeed class="mt-1" :showQuotedPost="$config.showRepliesOnHomepage" />
+  <IggyFeed class="mt-1" :showQuotedPost="$config.showRepliesOnHomepage" />
 </template>
 
 <script>
 import { useEthers } from 'vue-dapp'
-import ChatFeed from "../components/chat/ChatFeed.vue"
+import IggyFeed from "../components/chat/IggyFeed.vue"
 
 export default {
   name: "index",
 
   components: {
-    ChatFeed
+    IggyFeed
   },
 
   setup() {

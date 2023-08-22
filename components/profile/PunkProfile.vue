@@ -215,7 +215,7 @@
 
         <!-- Posts Tab -->
         <div v-if="currentTab === 'posts' && uDid">
-          <ChatFeed :byDid="uDid" :hideCommentBox="true" />
+          <IggyFeed :byDid="uDid" :hideCommentBox="true" />
         </div>
 
         <!-- Mints Tab -->
@@ -238,7 +238,7 @@ import Web3StorageImageUpload from "~/components/storage/Web3StorageImageUpload.
 import UserMintedPosts from "~/components/minted-posts/UserMintedPosts.vue";
 import ResolverAbi from "~/assets/abi/ResolverAbi.json";
 import resolvers from "~/assets/data/resolvers.json";
-import ChatFeed from '../chat/ChatFeed.vue';
+import IggyFeed from '../chat/IggyFeed.vue';
 
 export default {
   name: "PunkProfile",
@@ -267,7 +267,7 @@ export default {
   },
 
   components: {
-    ChatFeed,
+    IggyFeed,
     ProfileImage,
     UserMintedPosts,
     Web3StorageImageUpload

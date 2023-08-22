@@ -54,12 +54,12 @@
     </div>
   
     <!-- orbis post which has been minted -->
-    <ChatPost v-if="post" :post="post" :showQuotedPost="true" />
+    <IggyPost v-if="post" :post="post" :showQuotedPost="true" />
   </div>
 </template>
 
 <script>
-import ChatPost from "~/components/chat/ChatPost.vue";
+import IggyPost from "~/components/chat/IggyPost.vue";
 import { useToast } from "vue-toastification/dist/index.mjs";
 import { ethers } from "ethers";
 import { useEthers } from 'vue-dapp';
@@ -75,7 +75,7 @@ export default {
   },
 
   components: {
-    ChatPost
+    IggyPost
   },
 
   mounted() {

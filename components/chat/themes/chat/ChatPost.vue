@@ -1,5 +1,5 @@
 <template>
-<div class="card mb-3 border" v-if="post">
+<div class="card mb-1" v-if="post">
   <div class="card-body row">
     <div class="col-2 col-md-1">
       <NuxtLink :to="'/profile/?id='+String(showDomainOrFullAddress)">
@@ -17,8 +17,29 @@
       <!-- post author and timestamp -->
       <p class="card-subtitle mb-2 text-muted">
         <NuxtLink class="link-without-color hover-color" :to="'/profile/?id='+String(showDomainOrFullAddress)">{{showDomainOrAddressOrAnon}}</NuxtLink>
-        <span v-if="post.timestamp"> · <NuxtLink class="link-without-color hover-color" :to="'/post/?id='+post.stream_id">{{timeSince}}</NuxtLink></span>
+        
+        <!--
+        <span v-if="post.timestamp"> · {{timeSince}}</span>
+        -->
+        
+        <span class="ms-3">
+          <i @click="likePost" class="cursor-pointer hover-color" :class="alreadyLiked ? 'bi bi-heart-fill text-primary' : 'bi bi-heart'"></i> 
+          {{post.count_likes}}
+        </span>
+
+        <IggyPostMint :post="post" :parsedText="parsedText" />
+
+        <span v-if="post.master" class="cursor-pointer hover-color ms-2" data-bs-toggle="modal" :data-bs-target="'#replyModal'+post.stream_id">
+          <i class="bi bi-reply" /> Reply
+        </span>
+
+        <span v-if="isCurrentUserAuthor" class="cursor-pointer hover-color ms-2" data-bs-toggle="modal" :data-bs-target="'#deleteModal'+post.stream_id">
+          <i class="bi bi-trash" /> Delete
+        </span>
       </p>
+
+      <!-- quoted post (replied) -->
+      <ChatQuote class="mt-1 mb-3" :post="quotePost" v-if="showQuote" />
 
       <!-- post text -->
       <div @click="openPostDetails">
@@ -35,32 +56,6 @@
         <p v-if="parsedText.length < postLengthLimit || showFullText" class="card-text text-break" v-html="parsedText"></p>
       </div>
 
-      <!-- quoted post (replied) -->
-      <ChatQuote class="mt-3" :post="quotePost" v-if="showQuote" />
-
-      <!-- post actions -->
-      <p class="card-subtitle mt-3 text-muted">
-        
-        <span>
-          <i @click="likePost" class="cursor-pointer hover-color" :class="alreadyLiked ? 'bi bi-heart-fill text-primary' : 'bi bi-heart'"></i> 
-          {{post.count_likes}}
-        </span>
-
-        <NuxtLink v-if="!post.master" class="ms-3 link-without-color hover-color" :to="'/post/?id='+post.stream_id">
-          <i class="bi bi-chat"></i> 
-          {{post.count_replies}}
-        </NuxtLink>
-
-        <IggyPostMint :post="post" :parsedText="parsedText" />
-
-        <span v-if="post.master" class="cursor-pointer hover-color ms-2" data-bs-toggle="modal" :data-bs-target="'#replyModal'+post.stream_id">
-          <i class="bi bi-reply" /> Reply
-        </span>
-
-        <span v-if="isCurrentUserAuthor" class="cursor-pointer hover-color ms-2" data-bs-toggle="modal" :data-bs-target="'#deleteModal'+post.stream_id">
-          <i class="bi bi-trash" /> Delete
-        </span>
-      </p>
     </div>
   </div>
 
@@ -136,7 +131,7 @@ import { useToast } from "vue-toastification/dist/index.mjs";
 import { useUserStore } from '~/store/user';
 import ProfileImage from "~/components/profile/ProfileImage.vue";
 import IggyPostMint from "~~/components/minted-posts/IggyPostMint.vue";
-import ChatQuote from "~/components/chat/ChatQuote.vue";
+import ChatQuote from "./ChatQuote.vue";
 import { imgParsing, imgWithoutExtensionParsing, urlParsing, youtubeParsing } from '~/utils/textUtils';
 
 export default {

@@ -53,6 +53,7 @@ export default defineNuxtConfig({
       airdropClaimDomainsAddress: "", // chat token claim for domain holders contract address
       airdropPostMintersAddress: "", // chat token claim for post minters contract address
       blockExplorerBaseUrl: "https://explorer.testnet.mantle.xyz",
+      chatTheme: "chat", // chat theme (chat, birdie, etc.)
       chatTokenAddress: "", // chat token address
       chatTokenImage: "", // chat token image
       chatTokenSymbol: "", // chat token symbol or name

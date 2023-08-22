@@ -55,7 +55,7 @@ import ProfileImage from "~/components/profile/ProfileImage.vue";
 import { imgParsing, imgWithoutExtensionParsing, urlParsing, youtubeParsing } from '~/utils/textUtils';
 
 export default {
-  name: "ChatQuote",
+  name: "BirdieQuote",
   props: ["post"], // quote post: body, stream_id, pfp, username, address
 
   components: {

@@ -10,17 +10,17 @@
     <Meta name="twitter:description" :content="'Check out this chat post on ' + $config.projectName + '!'" />
   </Head>
 
-  <ChatPost class="m-4" v-if="masterPost" :post="masterPost" />
+  <IggyPost class="m-4" v-if="masterPost" :post="masterPost" />
 
-  <ChatPost v-if="post" :post="post" />
+  <IggyPost v-if="post" :post="post" />
 
-  <ChatFeed v-if="post" :id="post.stream_id" :master="post.master" />
+  <IggyFeed v-if="post" :id="post.stream_id" :master="post.master" />
 </div>
 </template>
 
 <script>
-import ChatPost from "~/components/chat/ChatPost.vue";
-import ChatFeed from "~/components/chat/ChatFeed.vue";
+import IggyPost from "~/components/chat/IggyPost.vue";
+import IggyFeed from "~/components/chat/IggyFeed.vue";
 import { useToast } from "vue-toastification/dist/index.mjs";
 
 export default {
@@ -34,8 +34,8 @@ export default {
   },
 
   components: {
-    ChatFeed,
-    ChatPost
+    IggyFeed,
+    IggyPost
   },
 
   created() {

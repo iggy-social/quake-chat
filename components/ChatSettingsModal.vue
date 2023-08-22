@@ -25,6 +25,24 @@
           </label>
         </div>
 
+        <div class="mt-4">
+          Chat theme:
+
+          <div class="form-check" @click="setChatTheme('birdie')">
+            <input class="form-check-input" type="radio" id="flexRadioDefault1" :checked="chatTheme == 'birdie'">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Birdie
+            </label>
+          </div>
+
+          <div class="form-check" @click="setChatTheme('chat')">
+            <input class="form-check-input" type="radio" id="flexRadioDefault2" :checked="chatTheme == 'chat'">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Chat
+            </label>
+          </div>
+        </div>
+        
         <hr>
 
         <p><strong>Swap</strong></p>
@@ -65,6 +83,7 @@ export default {
 
   data() {
     return {
+      chatTheme: null,
       showRepliesOnHomeFeed: null
     }
   },
@@ -85,6 +104,13 @@ export default {
       } else {
         this.showRepliesOnHomeFeed = true;
       }
+    }    
+    
+    // set initial checkbox value in chat settings modal for the chat theme
+    if (!window.localStorage.getItem("chatTheme")) {
+      this.chatTheme = this.$config.chatTheme;
+    } else {
+      this.chatTheme = window.localStorage.getItem("chatTheme");
     }
   },
 
@@ -109,6 +135,11 @@ export default {
   },
 
   methods: {
+    setChatTheme(theme) {
+      this.chatTheme = theme;
+      this.siteStore.setChatTheme(theme);
+    },
+
     toggleShowOnlyMasterPosts() {
       if (this.siteStore.getShowOnlyMasterPosts === "true") {
         this.siteStore.setShowOnlyMasterPosts("false");
