@@ -6,7 +6,7 @@ export const useSiteStore = defineStore({
 
   state: () => {
     return {
-      chatTheme: useLocalStorage('chatTheme', "birdie"),
+      chatTheme: useLocalStorage('chatTheme', null),
       colorMode: "dark",
       showOnlyMasterPosts: useLocalStorage('showOnlyMasterPosts', "false"),
       slippage: "0.5", // percentage (%)
@@ -16,7 +16,7 @@ export const useSiteStore = defineStore({
 
   getters: {
     getChatTheme(state) {
-      const pStorage = useLocalStorage('chatTheme', "birdie");
+      const pStorage = useLocalStorage('chatTheme', null);
 
       if (pStorage.value) {
         state.chatTheme = pStorage.value;

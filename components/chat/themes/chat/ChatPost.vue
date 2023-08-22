@@ -42,7 +42,7 @@
       <ChatQuote class="mt-1 mb-3" :post="quotePost" v-if="showQuote" />
 
       <!-- post text -->
-      <div @click="openPostDetails">
+      <div>
         <p
           class="card-text text-break"
           v-if="parsedText.length > postLengthLimit && !showFullText"
@@ -447,23 +447,6 @@ export default {
       } else {
         this.toast("Please sign into chat to be able to reply to a post.", {type: "error"});
       }
-    },
-
-    openPostDetails() {
-      // navigate to post details page if you're not already there
-      /*
-      if (
-        this.route.path !== "/post/" && // no post on any /post page is clickable
-        this.route.path !== "/post" && // no post on any /post page is clickable
-        this.route.href !== "/post?id=" + this.post.stream_id &&
-        this.route.href !== "/post/?id=" + this.post.stream_id
-      ) {
-        console.log("navigate to post details page")
-        this.$router.push({ name: 'post', query: { id: this.post.stream_id } });
-      }
-      */
-
-      this.$router.push({ name: 'post', query: { id: this.post.stream_id } });
     },
 
     parsePostText() {

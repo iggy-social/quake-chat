@@ -112,6 +112,8 @@ export default {
     } else {
       this.chatTheme = window.localStorage.getItem("chatTheme");
     }
+
+    this.siteStore.setChatTheme(this.chatTheme);
   },
 
   computed: {
